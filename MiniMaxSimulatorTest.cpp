@@ -51,6 +51,8 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
 
     //Copy board.
     Board copyBoard = gameLogic->getBoard();
+    vector<BoardCoordinates> savedMovesOfPlayer1 = humanPlayer->getPlayerMoves();
+    vector<BoardCoordinates> savedMovesOfPlayer2 = computerPlayer->getPlayerMoves();
 
     simulator->getScoreByMove(possibleMoves, BoardCoordinates(3, 3));
 
@@ -58,6 +60,9 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
     Board boardAfter = gameLogic->getBoard();
     //Check if boards are equal.
     EXPECT_EQ(copyBoard, boardAfter);
+    //Check if vectors are equal
+    EXPECT_EQ(savedMovesOfPlayer1, humanPlayer->getPlayerMoves());
+    EXPECT_EQ(savedMovesOfPlayer2, computerPlayer->getPlayerMoves());
     //Free all data.
     delete board;
     delete humanPlayer;

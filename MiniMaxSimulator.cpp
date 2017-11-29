@@ -56,8 +56,14 @@ int MiniMaxSimulator::getScoreByMove(map<BoardCoordinates, vector<BoardCoordinat
         }
     }
     //Set back all flipped symbols.
-    opponent->updatePlayerSymbolAdd(flippedSymbols);
     computerPlayer->updatePlayerSymbolRemoved(flippedSymbols);
+
+    //Remove move.
+    flippedSymbols.erase(remove(flippedSymbols.begin(), flippedSymbols.end(), move),
+                         flippedSymbols.end());
+    
+    opponent->updatePlayerSymbolAdd(flippedSymbols);
+
     //Copy board to be as saved board.
     copyBoardContent(savedBoard, &gameLogic->getBoard());
     //Return max score for game.
