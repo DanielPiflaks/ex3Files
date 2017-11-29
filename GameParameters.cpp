@@ -1,8 +1,8 @@
 /******************************************
-Student name: Daniel Piflaks
-Student ID: 311322986
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
 Course Exercise Group: 05
-Exercise name: Ex2
+Exercise name: Ex3
 ******************************************/
 
 #include "Board.h"
@@ -29,6 +29,7 @@ GameParameters::GameParameters(PlayerOptions player1Type, char player1Symbol, Pl
         }
     }
 
+    //Create 2 simulator in case that one of players is computer.
     MiniMaxSimulator *simulatorPlayer1 = new MiniMaxSimulator(gameLogic);
     MiniMaxSimulator *simulatorPlayer2 = new MiniMaxSimulator(gameLogic);
 
@@ -63,17 +64,22 @@ GameParameters::GameParameters(PlayerOptions player1Type, char player1Symbol, Pl
             break;
     }
 
+    //Check if first player is computer player
     if (player1Type == AlPlayerOp) {
+        //Set players for simulators.
         simulatorPlayer1->setOpponent(player2);
         simulatorPlayer1->setComputerPlayer(player1);
     } else {
+        //If not, delete the simulator.
         delete simulatorPlayer1;
     }
-
+    //Check if second player is computer player
     if (player2Type == AlPlayerOp) {
+        //Set players for simulators.
         simulatorPlayer2->setOpponent(player1);
         simulatorPlayer2->setComputerPlayer(player2);
     } else {
+        //If not, delete the simulator.
         simulatorPlayer2;
     }
 

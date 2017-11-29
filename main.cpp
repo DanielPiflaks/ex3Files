@@ -1,17 +1,18 @@
 /******************************************
-Student name: Daniel Piflaks
-Student ID: 311322986
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
 Course Exercise Group: 05
-Exercise name: Ex2
+Exercise name: Ex3
 ******************************************/
 #include <limits>
 #include "GameParameters.h"
 #include "Game.h"
 
 int main() {
-    const int numberRows = 4;
-    const int numberColumns = 4;
+    const int numberRows = 8;
+    const int numberColumns = 8;
 
+    //Create bool parameter for while loop to get player wanted player.
     bool waitingForInput = true;
     GameParameters::PlayerOptions player2Type;
     int input;
@@ -20,14 +21,17 @@ int main() {
         cout << "1. Al player" << endl << "2. human player" << endl;
 
         cin >> input;
-
+        //If input is 1, then the game is against al player.
         if (input == 1) {
+            //If input is 1, then the game is against al player.
             player2Type = GameParameters::AlPlayerOp;
             waitingForInput = false;
         } else if (input == 2) {
+            //If input is 2, then the game is against human player.
             player2Type = GameParameters::HumanPlayerOp;
             waitingForInput = false;
         }
+        //Clear not valid input.
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }

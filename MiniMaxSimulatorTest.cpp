@@ -1,13 +1,16 @@
-//
-// Created by danielpiflaks on 27/11/17.
-//
-
+/******************************************
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
+Course Exercise Group: 05
+Exercise name: Ex3
+******************************************/
 #include <gtest/gtest.h>
 #include "../src/Board.h"
 #include "../src/Game.h"
 #include "../src/MiniMaxSimulator.h"
 #include "../src/StandartGameLogic.h"
 #include "../src/HumanPlayer.h"
+#include "../src/AIPlayer.h"
 
 //Check that board is not changed in the simulator.
 TEST(MiniMaxSimulatorTest, BoardIsntChange) {
@@ -18,7 +21,7 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
     //Create game logic.
     GameLogic *gameLogic = new StandartGameLogic(board);
     //Create simulator.
-    MiniMaxSimulator simulator(gameLogic);
+    MiniMaxSimulator *simulator = new MiniMaxSimulator(gameLogic);
     //Put symbols to start position as in game.
     gameLogic->getBoard().putSymbolOnBoard(5, 5, 'o');
     gameLogic->getBoard().putSymbolOnBoard(4, 4, 'o');
@@ -27,7 +30,7 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
 
     //Create players.
     Player *humanPlayer = new HumanPlayer('x', board, gameLogic);
-    Player *computerPlayer = new HumanPlayer('o', board, gameLogic);
+    Player *computerPlayer = new AIPlayer('o', board, gameLogic, simulator);
 
     //Put player1 symbols by its start position.
     humanPlayer->addPlayerSymbol(4, 5);
@@ -38,8 +41,8 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
     computerPlayer->addPlayerSymbol(4, 4);
 
     //Set the players to simulator.
-    simulator.setComputerPlayer(computerPlayer);
-    simulator.setOpponent(humanPlayer);
+    simulator->setComputerPlayer(computerPlayer);
+    simulator->setOpponent(humanPlayer);
 
     //Get map of possible moves of computer player.
     map<BoardCoordinates, vector<BoardCoordinates> > possibleMoves = gameLogic->getPossibleGameMoves(
@@ -49,7 +52,7 @@ TEST(MiniMaxSimulatorTest, BoardIsntChange) {
     //Copy board.
     Board copyBoard = gameLogic->getBoard();
 
-    simulator.getScoreByMove(possibleMoves, BoardCoordinates(3, 3));
+    simulator->getScoreByMove(possibleMoves, BoardCoordinates(3, 3));
 
     //Get board after simulator.
     Board boardAfter = gameLogic->getBoard();

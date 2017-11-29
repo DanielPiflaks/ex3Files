@@ -1,6 +1,9 @@
-//
-// Created by danielpiflaks on 26/11/17.
-//
+/******************************************
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
+Course Exercise Group: 05
+Exercise name: Ex3
+******************************************/
 
 #ifndef EX3_ALPLAYER_H
 #define EX3_ALPLAYER_H
@@ -12,7 +15,7 @@
 class AIPlayer : public Player {
 public:
     /**
-    * Human player constructor bbbbb.
+    * Human player constructor.
     * @param symbol player symbol
     * @param board board to play on.
     * @param gameLogic game logic to play by.

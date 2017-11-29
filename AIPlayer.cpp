@@ -1,7 +1,9 @@
-//
-// Created by danielpiflaks on 26/11/17.
-//
-
+/******************************************
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
+Course Exercise Group: 05
+Exercise name: Ex3
+******************************************/
 #include "BoardCoordinates.h"
 #include "AIPlayer.h"
 
@@ -28,24 +30,27 @@ vector<BoardCoordinates> AIPlayer::playOneTurn() {
                 firstTime = false;
             }
 
-            //Check if delta
+            //Check if delta is smaller then min.
             if (delta < min) {
+                //Set wanted move to be with smallest point.
                 wantedMove = singleMove;
+                //Set min to be the new min.
                 min = delta;
             }
         }
     }
-
+    //Initialize vector of flipped symbols.
     vector<BoardCoordinates> flippedSymbols;
-
+    //Check if wanted move is on board(maybe we don't have wanted move at all).
     if (board->isOnBoard(wantedMove.getRow(), wantedMove.getColumn())) {
         //Get flipped symbols vector.
         flippedSymbols = gameLogic->flipSymbols(possibleMoves,
                                                 wantedMove, getSymbol());
         cout << endl;
-
+        //Print what computer player has played.
         cout << getSymbol() << " Played" << wantedMove << endl;
         cout << endl;
+        //Return all flipped symbols.
         return flippedSymbols;
     } else {
         cout << "No possible moves." << endl;

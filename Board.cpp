@@ -1,8 +1,8 @@
 /******************************************
-Student name: Daniel Piflaks
-Student ID: 311322986
+Student name: Daniel Piflaks and Sapir Blutman
+Student ID: Daniel : 311322986 Sapir : 203312905
 Course Exercise Group: 05
-Exercise name: Ex2
+Exercise name: Ex3
 ******************************************/
 #include "Board.h"
 
@@ -26,21 +26,21 @@ Board::Board(int numRows, int numCols) : numRows(numRows), numCols(numCols) {
 }
 
 Board::Board(const Board &oldBoard) {
+    //Create new matrix.
     boardMatrix = new char *[oldBoard.getNumCols()];
+    //Set number of rows and columns to new board.
     numRows = oldBoard.numRows;
     numCols = oldBoard.numCols;
+    //Allocate rows.
     for (int i = 0; i < oldBoard.getNumRows(); ++i) {
         boardMatrix[i] = new char[oldBoard.getNumCols()];
     }
-
+    //Copy all chars from first board to second board.
     for (int j = 0; j < oldBoard.numRows; j++) {
         for (int i = 0; i < oldBoard.numCols; i++) {
             putSymbolOnBoard(j + 1, i + 1, oldBoard.getSymbolByPlace(j + 1, i + 1));
         }
     }
-
-    numCols = oldBoard.numCols;
-    numRows = oldBoard.numRows;
 }
 
 
@@ -121,14 +121,16 @@ char Board::getSymbolByPlace(int row, int column) const {
     return boardMatrix[row - 1][column - 1];
 }
 
-bool Board::isOnBoard(int row, int column) const{
+bool Board::isOnBoard(int row, int column) const {
     return ((row > 0) && (row <= numRows) && (column > 0) && (column <= numCols));
 }
 
 bool Board::operator==(const Board &board) const {
+    //Check that size of boards is equal.
     if ((numRows == board.getNumRows() && (numCols == board.getNumCols()))) {
         for (int i = 0; i < numRows; ++i) {
             for (int j = 0; j < numCols; ++j) {
+                //Check that all symbols of board are equal.
                 if (getSymbolByPlace(i + 1, j + 1) != (board.getSymbolByPlace(i + 1, j + 1))) {
                     return false;
                 }
